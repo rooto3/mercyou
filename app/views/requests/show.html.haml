@@ -1,0 +1,30 @@
+= render partial: "layouts/header"
+.matter
+  .matter__name
+    = @requests.item
+  .matter__image
+    = image_tag @requests.image, alt: '', height: '50px', width: '50px', class: 'image'
+  .matter__price
+    = "希望価格 ¥ #{@requests.price}円"
+  .table
+    .detail
+      .detail-table
+        .detail-table__left
+          .name
+            = "依頼主"
+        .detail-table__right
+          .link
+          = link_to @requests.user.name, "/users/#{@requests.user.id}", class: "new-btn"
+      .detail-table
+        .detail-table__left
+          .name
+            = "カテゴリー"
+        .detail-table__right
+          .link
+            = @requests.tag
+  .matter__desc
+    = simple_format(@requests.remark) 
+  .matter__like
+    = form_for [@requests] do |f|
+      = f.submit 'いいね', class: 'submit-btn'
+      

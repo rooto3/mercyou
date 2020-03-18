@@ -1,0 +1,25 @@
+.header
+  .header-top
+    .header-top__left
+      .header-top__left--logo
+        = image_tag 'mercari_icon.png', alt: '', height: '50px', width: '50px', class: ''
+      .header-top__left--name
+        mercyou
+  .header__search
+    = form_tag(exhibits_searches_path, method: :get) do 
+      .input-box
+        = text_field_tag :keyword, '', class: 'input-box__text'
+        = submit_tag "検索", class: 'input-box__btn' 
+.main
+  .contents
+    - @exhibits.each do |exhibit|
+      .contents__box
+        .contents__box--post{:style => "background-image: url(#{exhibit.image});"}
+        .contents__box--name
+          = exhibit.name
+  .exhibit
+    = link_to '', '/exhibits/new'
+    .exhibit__content
+      出品
+      = icon('fas', 'camera', class: 'exhibit__content--icon')
+%footer

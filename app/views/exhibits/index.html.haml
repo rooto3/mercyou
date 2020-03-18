@@ -1,0 +1,28 @@
+= render partial: "layouts/header"
+.main
+  .contents
+    - @exhibits.each do |exhibit|
+      .contents__box
+        = link_to '', exhibit_path(exhibit.id)
+        .contents__box--post{:style => "background-image: url(#{exhibit.image});"}
+        .contents__box--name
+          = exhibit.name
+  .exhibit
+    = link_to '', 'exhibits/new'
+    .exhibit__content
+      出品
+      = icon('fas', 'camera', class: 'exhibit__content--icon')
+  .request
+    = link_to '', '/requests/'
+    .request__content
+      リクエスト
+      = icon('fab', 'audible', class: 'request__content--icon')
+%footer
+  .about
+    メルシューについて
+    .about__overview
+      会社概要(運営会社)
+    .about__information
+      採用情報
+    .about__blog
+      公式ブログ

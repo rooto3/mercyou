@@ -1,0 +1,56 @@
+.header
+  .header-top
+    .header-top__left
+      .header-top__left--logo
+        = link_to root_path do
+          = image_tag 'mercari_icon.png', alt: '', height: '50px', width: '50px', class: ''
+      .header-top__left--name
+        = link_to "mercyou", root_path 
+  .header__search
+    = form_tag(exhibits_searches_path, method: :get) do 
+      .input-box
+        = text_field_tag :keyword, '', class: 'input-box__text'
+        = submit_tag "検索", class: 'input-box__btn' 
+.matter
+  .matter__name
+    = @exhibits.name
+  .matter__image
+    = image_tag @exhibits.image, alt: '', height: '50px', width: '50px', class: 'image'
+  .matter__price
+    = "¥ #{@exhibits.price}円"
+  .table
+    .detail
+      .detail-table
+        .detail-table__left
+          .name
+            = "出品者"
+        .detail-table__right
+          .link
+          = link_to @exhibits.user.name, "/users/#{@exhibits.user.id}", class: "new-btn"
+      .detail-table
+        .detail-table__left
+          .name
+            = "カテゴリー"
+        .detail-table__right
+          .link
+          = @exhibits.tag_id
+      .detail-table
+        .detail-table__left
+          = "商品の状態"
+        .detail-table__right
+          = @exhibits.state
+      .detail-table
+        .detail-table__left
+          = "配送元地域"
+        .detail-table__right
+          = @exhibits.from
+      .detail-table
+        .detail-table__left
+          = "配送日の目安"
+        .detail-table__right
+          = @exhibits.days
+  .matter__price
+    = "¥ #{@exhibits.price}円"
+  .matter__desc
+    = simple_format(@exhibits.desc) 
+  

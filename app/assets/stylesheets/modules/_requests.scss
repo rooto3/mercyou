@@ -1,0 +1,181 @@
+.blank{
+  height: 50px;
+}
+.rq-new{
+  width: 100%;
+  height: 50px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 20px;
+  background-color: red;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  font-weight: bolder;
+  z-index: 3;
+  a{
+    text-decoration: none;
+    color: white;
+    display: block;
+  }
+  .new-btn{
+    padding: 10px 10px;
+  }
+}
+//indexアクション
+.rq-header{
+  height: 50px;
+  text-align: center;
+  font-size: 30px;
+  background-color: whitesmoke;
+  line-height: 50px;
+  font-weight: bolder;
+}
+.rq-content{
+  position: relative;
+  background-color: lightgrey;
+  padding-bottom: 50px;
+  &__raw{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 1%;
+    position: relative;
+    width: 100%;
+    .content-box{
+      height: 300px;
+      width: 32%;
+      margin: 5px 0px 5px 1%;
+      background-color: white;
+      position: relative;
+      a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        cursor: pointer;
+        z-index: 2;
+      }
+      &__post{
+        height: 80%;
+        width: 100%;
+        background-size: 100%;
+        position: absolute;
+        top: 0px;
+      }
+      &__name{
+        height: 20%;
+        width: 100%;
+        padding: 5px 5px;
+        position: absolute;
+        bottom: 0px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+//newアクション
+.rq-main{
+  background-color: whitesmoke;
+  height: 120vh;
+  padding: 20px;
+  &__imgbox{
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    &--image{
+      width: 100%;
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+      font-size: 30px;
+      cursor: pointer;
+      .image__file{
+        width: 100%;
+        height: 200px;
+        align-items: center;
+        display: none;
+      }
+    }
+  }
+  .title{
+    font-weight: bold;
+    font-size: 14px;
+    margin: 15px 0;
+  }
+  .item-name{
+    margin-top: 20px;
+    width: 100%;
+    &__text{
+      width: 100%;
+      height: 50px;
+      padding: 0 10px;
+    }
+  }
+  .item-tag{
+    margin-top: 20px;
+    &__text{
+      width: 100%;
+      height: 50px;
+    }
+  }
+  .item-price{
+    margin-top: 20px;
+    border-bottom: 1px solid black;
+    &__text{
+      width: 20%;
+      height: 50px;
+      padding: 0 10px;
+      float: right;
+      margin-bottom: 50px;
+    }
+  }
+  .item-remark{
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    border-bottom: 1px solid black;
+    &__text{
+      width: 100%;
+      height: 150px;
+      padding: 0 10px;
+      word-wrap: break-word;
+    }
+  }
+  .rq-main__btn{
+    margin-top: 20px;
+    .submit-btn{
+      width: 100%;
+      height: 50px;
+      cursor: pointer;
+      background-color: red;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+    }
+  }
+  .return{
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    line-height: 50px;
+    text-align: center;
+    background-color: blue;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    a{
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+    .new-btn{
+      padding: 10px 10px;
+    }
+  }
+}
+.matter__like{
+  text-align: center;
+}
+

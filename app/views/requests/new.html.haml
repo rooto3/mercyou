@@ -1,0 +1,56 @@
+.header
+  .header-top
+    .header-top__left
+      .header-top__left--logo
+        = link_to root_path do
+          = image_tag 'mercari_icon.png', alt: '', height: '50px', width: '50px', class: '' 
+      .header-top__left--name
+        = link_to "mercyou", root_path 
+    .header-top__right
+      - if user_signed_in?
+        .header-top__right--new
+          = link_to 'マイページ', "/users/#{current_user.id}", class: "new-btn"
+        .header-top__right--login
+          = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "login-btn"
+      - else
+        .header-top__right--new
+          = link_to '新規会員', new_user_registration_path, class: "new-btn"
+        .header-top__right--login
+          = link_to 'ログイン', new_user_session_path, class: "login-btn"
+
+  .header__search
+    = form_tag(exhibits_searches_path, method: :get) do 
+      .input-box
+        = text_field_tag :keyword, '', class: 'input-box__text'
+        = submit_tag "検索", class: 'input-box__btn'
+
+.rq-main
+  = form_for [@requests] do |f|
+    .rq-main__imgbox
+      = f.label :image, class: 'rq-main__imgbox--image' do
+        = icon('fas', 'image', class: 'icon')
+        = f.file_field :image, class: 'image__file'
+    .title
+      商品名
+    .rq-main__item
+      = f.text_field :item, class: 'item-name__text', placeholder: '40文字まで'
+    .title
+      商品の詳細・備考
+    .rq-main__remark
+      = f.text_area :remark, class: 'item-remark__text', placeholder: '1000文字以内'
+    .title
+      カテゴリー
+    .rq-main__tag
+      = f.select :tag, [["レディース","レディース"],["メンズ","メンズ"],["ベビー・キッズ","べビーキッズ"],["インテリア、住まい、小物","インテリア・住まい・小物"],["本・音楽・ゲーム","本・音楽・ゲーム"]], {include_blank: "選択して下さい"}, class: 'item-tag__text'
+    .title
+      希望価格
+    .re-main__price
+      = f.number_field :price, class: 'item-price__text', placeholder: '0'
+    .rq-main__btn
+      = f.submit 'リクエスト', class: 'submit-btn'
+  .return
+    = link_to 'もどる', "/requests/", class: "return-btn"
+
+
+
+  

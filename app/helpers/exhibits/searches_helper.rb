@@ -1,0 +1,2 @@
+module Exhibits::SearchesHelper
+end

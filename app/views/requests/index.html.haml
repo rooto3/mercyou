@@ -1,0 +1,16 @@
+.blank
+= render partial: "layouts/header"
+.rq-header
+  リクエスト掲示板
+.rq-new
+  = link_to 'リクエストする', "/requests/new", class: "new-btn"
+.rq-content
+  .rq-content__raw
+    - @requests.each do |request|
+      .content-box
+        = link_to '', request_path(request.id)
+        .content-box__post{:style => "background-image: url(#{request.image});"}
+        .content-box__name
+          = request.item
+%footer
+  

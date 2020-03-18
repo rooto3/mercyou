@@ -1,0 +1,38 @@
+.header
+  .header-top
+    .header-top__left
+      .header-top__left--logo
+        = image_tag 'mercari_icon.png', alt: '', height: '50px', width: '50px', class: ''
+      .header-top__left--name
+        mercyou
+    .header-top__right
+      - if user_signed_in?
+        .header-top__right--new
+          = link_to 'マイページ', "/users/#{current_user.id}", class: "new-btn"
+        .header-top__right--login
+          = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "login-btn"
+      - else
+        .header-top__right--new
+          = link_to '新規会員', new_user_registration_path, class: "new-btn"
+        .header-top__right--login
+          = link_to 'ログイン', new_user_session_path, class: "login-btn"
+
+  .header__search
+    = form_tag(exhibits_searches_path, method: :get) do 
+      .input-box
+        = text_field_tag :keyword, '', class: 'input-box__text'
+        = submit_tag "検索", class: 'input-box__btn' 
+.user-header
+  = @name
+  のマイページ
+.main
+  .ex-items
+    出品した商品
+  .contents
+    - @exhibits.each do |exhibit|
+      .contents__box
+        = link_to '', exhibit_path(exhibit.id)
+        .contents__box--post{:style => "background-image: url(#{exhibit.image});"}
+        .contents__box--name
+          = exhibit.name
+%footer
