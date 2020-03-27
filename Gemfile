@@ -58,3 +58,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'devise'
 gem 'pry-rails'
+gem 'active_hash'
+gem 'ancestry'
+gem 'jquery-rails'
+

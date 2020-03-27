@@ -153,5 +153,19 @@
 - belongs_to :item
 
 
+## shippingテーブル
+|Column|Type|Options|
+|------|----|-------|
+|fee_burgen|boolean|null: false, foreign_key: true|
+|service|integer|null: false|
+|area|string|null: false|
+|handling_time|integer|null: false|
+
+### Association
+- belongs_to :item
+
+
+
+
 
 

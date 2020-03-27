@@ -1,6 +1,5 @@
 class Exhibit < ApplicationRecord
-  has_many :tag_exhibits
-  has_many :tags, through: :tag_exhibits
+  belongs_to :category
   belongs_to :user
 
 

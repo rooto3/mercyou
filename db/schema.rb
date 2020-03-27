@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200316051235) do
+ActiveRecord::Schema.define(version: 20200326103003) do
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry", using: :btree
+  end
 
   create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -19,17 +27,19 @@ ActiveRecord::Schema.define(version: 20200316051235) do
   end
 
   create_table "exhibits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "image",      limit: 65535
+    t.text     "image",       limit: 65535
     t.string   "name"
     t.string   "desc"
     t.string   "state"
     t.string   "from"
     t.string   "days"
     t.integer  "price"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "tag_id"
     t.integer  "user_id"
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_exhibits_on_category_id", using: :btree
     t.index ["tag_id"], name: "index_exhibits_on_tag_id", using: :btree
     t.index ["user_id"], name: "index_exhibits_on_user_id", using: :btree
   end
@@ -56,19 +66,12 @@ ActiveRecord::Schema.define(version: 20200316051235) do
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
 
-  create_table "tag_exhibits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "tag_id"
-    t.integer  "exhibit_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exhibit_id"], name: "index_tag_exhibits_on_exhibit_id", using: :btree
-    t.index ["tag_id"], name: "index_tag_exhibits_on_tag_id", using: :btree
-  end
-
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_tags_on_ancestry", using: :btree
   end
 
   create_table "user_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -92,10 +95,9 @@ ActiveRecord::Schema.define(version: 20200316051235) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "exhibits", "categories"
   add_foreign_key "exhibits", "tags"
   add_foreign_key "exhibits", "users"
   add_foreign_key "requests", "users"
-  add_foreign_key "tag_exhibits", "exhibits"
-  add_foreign_key "tag_exhibits", "tags"
   add_foreign_key "user_requests", "users"
 end

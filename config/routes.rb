@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   namespace :exhibits do
     resources :searches, only: :index
   end
-  resources :exhibits, only: [:index, :new, :create, :show] 
+  resources :exhibits, only: [:index, :new, :create, :show] do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end
   resources :requests, only: [:index, :new, :create, :show]
   resources :users, only: :show
   resources :likes, only: [:create, :destroy]

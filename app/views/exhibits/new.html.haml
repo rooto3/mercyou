@@ -1,3 +1,4 @@
+%script{:src => "category.js"}
 .header-new
   .logo
     = link_to root_path do
@@ -11,7 +12,7 @@
   .des
     最大10枚までアップロードできます
   //.ex-img  
-  = form_for [@exhibits] do |f|
+  = form_for [@exhibits]  do |f|
     .ex-img__box
       = f.label :image, class: 'ex-img__box--image' do
         = icon('fas', 'camera', class: 'icon')
@@ -25,9 +26,9 @@
         商品の説明
       = f.text_area :desc, class: 'item-desc__text', placeholder: '商品の説明(1000文字以内)'
     .item-category
-      .title
-        カテゴリー
-      = f.select :tag_ids, [["レディース","1"],["メンズ","2"],["ベビー・キッズ","3"],["インテリア、住まい、小物","4"],["本・音楽・ゲーム","5"]], {include_blank: "選択して下さい"}, class: 'item-category__text'
+      = f.label 'カテゴリー', class: 'listing-default__label'
+      %span.listing-default--require 必須
+      = f.select :category, @category_parent_array, {}, {class: 'item-category__text', id: 'parent_category'}
     .item-state
       .title
         商品の状態

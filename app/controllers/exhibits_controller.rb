@@ -9,6 +9,15 @@ class ExhibitsController < ApplicationController
   
   def new
     @exhibits = Exhibit.new
+    @category_parent_array = ["---"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+    def get_category_grandchildren
+      #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
+      @category_grandchildren = Category.find("#{params[:child_id]}").children
+    end
   end
 
   def create
